@@ -1,21 +1,22 @@
 import React from 'react';
+import './Player.css';
 
 interface IProps {
     name: string,
     role: string,
-    handleRemovePlayer: (role: string) => void
+    jersey: string,
+    handleRemovePlayer: (jersey: string) => void
 }
 
-const Player = ({ name, role = "N/A", handleRemovePlayer }: IProps) => {
+const Player = ({ name, role, jersey = "N/A", handleRemovePlayer }: IProps) => {
     return (
-        <div className="card">
-            <p>
-                <strong>Name: </strong>{name}
-            </p>
-            <p>
-                <strong>Role: </strong>{role}
-            </p>
-            <button onClick={() => handleRemovePlayer(role)}>Remove</button>
+        <div className="player">
+            <div className="details">
+                <h5>Name: {name}</h5>
+                <p>Role: {role}</p>
+                <p> Unique Jersey Number: {jersey}</p>
+                <button onClick={() => handleRemovePlayer(jersey)}>Remove</button>
+            </div>
         </div>
     );
 };

@@ -1,4 +1,3 @@
-import './App.css';
 import Squad from "./components/Squad";
 
 function App() {

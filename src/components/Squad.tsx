@@ -3,7 +3,8 @@ import Player from './Player';
 
 interface IPlayer {
     name: string,
-    role: string
+    role: string,
+    jersey: string
 }
 
 const Squad = () => {
@@ -14,7 +15,8 @@ const Squad = () => {
         setPlayerList([...playerList, player])
         setPlayer({
             name: "",
-            role: ""
+            role: "",
+            jersey: ""
         })
     }
 
@@ -22,14 +24,13 @@ const Squad = () => {
         setPlayer({ ...player, [e.target.name]: e.target.value })
     }
 
-    const handleRemovePlayer= (role: string) => {
-        const newPlayerList = playerList.filter(player => player.role !== role)
+    const handleRemovePlayer = (jersey: string) => {
+        const newPlayerList = playerList.filter(player => player.jersey !== jersey)
         setPlayerList(newPlayerList)
     }
 
     return (
         <div>
-            {/* <h1 className="text-center">⛹️ Player List</h1> */}
             <div className="form">
                 <input
                     value={player.name}
@@ -45,11 +46,20 @@ const Squad = () => {
                     name="role"
                     placeholder="Player role" />
 
+                <input
+                    value={player.jersey}
+                    onChange={onChange}
+                    type="text"
+                    name="jersey"
+                    placeholder="Player jersey" />
+
                 <button onClick={handleAddPlayer}>Add</button>
             </div>
-            {
-                playerList.map((player) => <Player key={player.name} name={player.name} role={player.role} handleRemovePlayer={handleRemovePlayer} />)
-            }
+            <div className="mt-5">
+                {
+                    playerList.map((player) => <Player key={player.name} name={player.name} role={player.role} jersey={player.jersey} handleRemovePlayer={handleRemovePlayer} />)
+                }
+            </div>
         </div>
     );
 };
